@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover, maximum-scale=1.0, user-scalable=no" />
+  <meta name="theme-color" content="#6c47ff" />
+  <meta name="description" content="Scopri artisti emergenti prima di tutti — una nuova playlist ogni lunedì." />
+  <title>Emerging Artists Weekly</title>
+
+  <link rel="manifest" href="/manifest.json" />
+  <link rel="icon" href="/icons/icon-192.png" />
+  <link rel="apple-touch-icon" href="/icons/icon-192.png" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+
+  <link rel="stylesheet" href="/css/style.css" />
+</head>
+<body>
+  <div class="app">
+    <!-- Header -->
+    <header class="header">
+      <div class="header__brand">
+        <span class="header__logo">🎵</span>
+        <span class="header__name">Emerging Artists</span>
+      </div>
+      <div class="header__meta" id="playlist-meta">Caricamento…</div>
+    </header>
+
+    <!-- Main card -->
+    <main class="stage" id="stage">
+      <!-- Loading state -->
+      <div class="state" id="state-loading">
+        <div class="spinner"></div>
+        <p>Carico la playlist della settimana…</p>
+      </div>
+
+      <!-- Error / empty state -->
+      <div class="state" id="state-empty" hidden>
+        <p class="state__title">Nessuna playlist disponibile</p>
+        <p class="state__sub">Torna lunedì per i nuovi artisti.</p>
+        <button class="btn" id="retry-btn">Riprova</button>
+      </div>
+
+      <!-- Card -->
+      <article class="card" id="card" hidden>
+        <div class="card__cover" id="cover-wrap">
+          <img class="card__cover-img" id="cover" alt="" />
+          <div class="card__player" id="player-mount" hidden>
+            <div id="yt-player"></div>
+          </div>
+          <button class="card__play" id="play-btn" aria-label="Riproduci">
+            <svg viewBox="0 0 24 24" width="34" height="34" aria-hidden="true">
+              <path d="M8 5v14l11-7z" fill="currentColor"/>
+            </svg>
+          </button>
+        </div>
+
+        <div class="card__body">
+          <h1 class="card__name" id="artist-name">—</h1>
+          <p class="card__sub" id="artist-sub">—</p>
+          <p class="card__scheda" id="artist-scheda"></p>
+
+          <div class="card__actions">
+            <button class="like" id="like-btn" aria-pressed="false">
+              <span class="like__icon" id="like-icon">♡</span>
+              <span class="like__label">Like</span>
+              <span class="like__count" id="like-count">0</span>
+            </button>
+            <div class="views" title="Ascolti">
+              <span class="views__icon">👁</span>
+              <span class="views__count" id="views-count">0</span>
+            </div>
+            <a class="yt-link" id="yt-link" href="#" target="_blank" rel="noopener" title="Apri su YouTube">YouTube ↗</a>
+          </div>
+        </div>
+      </article>
+    </main>
+
+    <!-- Footer / navigation -->
+    <footer class="nav" id="nav" hidden>
+      <div class="dots" id="dots"></div>
+      <div class="nav__btns">
+        <button class="navbtn" id="prev-btn" aria-label="Precedente">‹ Precedente</button>
+        <button class="navbtn navbtn--next" id="next-btn" aria-label="Successivo">Successivo ›</button>
+      </div>
+    </footer>
+  </div>
+
+  <!-- YouTube IFrame API -->
+  <script src="https://www.youtube.com/iframe_api"></script>
+
+  <!-- App scripts -->
+  <script src="/js/config.js"></script>
+  <script src="/js/storage.js"></script>
+  <script src="/js/api.js"></script>
+  <script src="/js/player.js"></script>
+  <script src="/js/app.js"></script>
+</body>
+</html>
