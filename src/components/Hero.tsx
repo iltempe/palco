@@ -1,5 +1,6 @@
 import type { Artist, SocialLinks } from "../lib/types";
 import { assetUrl } from "../lib/utils";
+import InstallApp from "./InstallApp";
 
 const LINK_LABELS: Record<keyof SocialLinks, string> = {
   instagram: "Instagram",
@@ -40,21 +41,20 @@ export default function Hero({ artist }: { artist: Artist }) {
           <p className="mx-auto mt-4 max-w-xl whitespace-pre-line text-dim sm:mx-0">{artist.bio}</p>
         )}
 
-        {links.length > 0 && (
-          <div className="mt-5 flex flex-wrap justify-center gap-2 sm:justify-start">
-            {links.map(([key, value]) => (
-              <a
-                key={key}
-                href={key === "email" ? `mailto:${value}` : value}
-                target={key === "email" ? undefined : "_blank"}
-                rel="noopener"
-                className="chip"
-              >
-                {LINK_LABELS[key]} ↗
-              </a>
-            ))}
-          </div>
-        )}
+        <div className="mt-5 flex flex-wrap items-center justify-center gap-2 sm:justify-start">
+          {links.map(([key, value]) => (
+            <a
+              key={key}
+              href={key === "email" ? `mailto:${value}` : value}
+              target={key === "email" ? undefined : "_blank"}
+              rel="noopener"
+              className="chip"
+            >
+              {LINK_LABELS[key]} ↗
+            </a>
+          ))}
+          <InstallApp />
+        </div>
       </div>
     </header>
   );
