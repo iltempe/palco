@@ -87,6 +87,8 @@ Di default il sito è **100% statico**: nessun backend, nessun contatore. Se vuo
 
 I dati sono anonimi: nessun login, nessuna informazione personale di chi ascolta.
 
+Con i contatori attivi, mettere like a un brano mostra una card **"Sei il N° fan"** con un'immagine pronta da condividere — un piccolo motore virale che trasforma il like in un motivo per parlare di te.
+
 ## 💻 Sviluppo locale
 
 Serve **Node 18+**.

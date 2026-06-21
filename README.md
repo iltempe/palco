@@ -87,6 +87,8 @@ By default the site is **100% static**: no backend, no counters. If you want to 
 
 Data is anonymous: no login, no personal info about listeners.
 
+With counters enabled, liking a song shows a **"You're fan #N"** card with a ready-to-share image — a small viral loop that turns a like into a reason to talk about you.
+
 ## 💻 Local development
 
 Requires **Node 18+**.

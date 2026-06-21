@@ -1,23 +1,30 @@
 import { useState } from "react";
-import { analyticsEnabled } from "../lib/analytics";
+import type { Track } from "../lib/types";
+import { analyticsEnabled, fetchTrackLikes } from "../lib/analytics";
+import { useBadge } from "../context/BadgeContext";
 import { compact, hasLocal, logEvent } from "../lib/utils";
 
 export default function LikeButton({
-  trackId,
+  track,
   initial,
 }: {
-  trackId: string;
+  track: Track;
   initial: number;
 }) {
+  const { celebrate } = useBadge();
   const [count, setCount] = useState(initial);
-  const [liked, setLiked] = useState(() => hasLocal(trackId, "like"));
+  const [liked, setLiked] = useState(() => hasLocal(track.id, "like"));
 
   async function onLike(e: React.MouseEvent) {
     e.stopPropagation();
     if (liked) return;
     setLiked(true);
     setCount((c) => c + 1);
-    await logEvent(trackId, "like");
+    const isNew = await logEvent(track.id, "like");
+    if (!isNew) return;
+    // Posizione del fan (= numero di like dopo il tuo). Null se analytics off.
+    const rank = analyticsEnabled ? await fetchTrackLikes(track.id) : null;
+    celebrate(track, rank);
   }
 
   return (

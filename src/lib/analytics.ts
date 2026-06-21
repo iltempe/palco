@@ -31,3 +31,18 @@ export async function recordEvent(trackId: string, tipo: "play" | "like"): Promi
   const { error } = await client.from("events").insert({ track_id: trackId, tipo });
   if (error) console.warn("analytics:", error.message);
 }
+
+/** Numero di like attuali di un brano (= la tua posizione subito dopo il like). */
+export async function fetchTrackLikes(trackId: string): Promise<number | null> {
+  if (!client) return null;
+  const { data, error } = await client
+    .from("event_counts")
+    .select("likes")
+    .eq("track_id", trackId)
+    .maybeSingle();
+  if (error) {
+    console.warn("analytics:", error.message);
+    return null;
+  }
+  return data ? Number(data.likes) || 0 : 0;
+}

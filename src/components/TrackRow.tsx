@@ -72,7 +72,7 @@ export default function TrackRow({ track, counts }: { track: Track; counts?: Cou
             ▶ {compact(counts?.plays ?? 0)}
           </span>
         )}
-        <LikeButton trackId={track.id} initial={counts?.likes ?? 0} />
+        <LikeButton track={track} initial={counts?.likes ?? 0} />
       </div>
     </div>
   );
