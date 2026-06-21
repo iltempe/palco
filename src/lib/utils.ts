@@ -1,4 +1,5 @@
 import { recordEvent } from "./analytics";
+import { lang } from "./i18n";
 
 /** Formatta i secondi in m:ss. */
 export function formatTime(sec: number): string {
@@ -10,7 +11,7 @@ export function formatTime(sec: number): string {
 
 /** Numeri compatti (1.2k). */
 export function compact(n: number): string {
-  return Intl.NumberFormat("it", { notation: "compact" }).format(n ?? 0);
+  return Intl.NumberFormat(lang, { notation: "compact" }).format(n ?? 0);
 }
 
 /** True se il path è un URL esterno. */

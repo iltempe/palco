@@ -49,6 +49,8 @@ export interface Analytics {
 }
 
 export interface SiteConfig {
+  /** Lingua dell'interfaccia: "it" (default) o "en". */
+  lang?: "it" | "en";
   artist: Artist;
   tracks: Track[];
   analytics?: Analytics;

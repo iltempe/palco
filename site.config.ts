@@ -13,6 +13,9 @@
 import type { SiteConfig } from "./src/lib/types";
 
 export const site: SiteConfig = {
+  // Lingua dell'interfaccia: "it" oppure "en"
+  lang: "it",
+
   artist: {
     name: "Marta Lo Russo",
     tagline: "Cantautrice da Napoli",

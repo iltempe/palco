@@ -59,6 +59,7 @@ export const site = {
 - **Audio files** go in `public/music/` (MP3, WAV, OGG). You can also use an external URL.
 - **Cover art / photos** go in `public/images/`.
 - The site **color** is set by `accentColor`.
+- The interface **language** is set by the top-level `lang` field: `"it"` or `"en"` (the whole UI, including the fan badge and share text, switches accordingly). Your own texts — bio, track descriptions — stay exactly as you write them.
 
 ## 📲 Install as an app (PWA)
 

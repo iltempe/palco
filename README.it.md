@@ -59,6 +59,7 @@ export const site = {
 - I **file audio** vanno in `public/music/` (MP3, WAV, OGG). Puoi anche usare un URL esterno.
 - Le **copertine/foto** vanno in `public/images/`.
 - Il **colore** del sito si cambia con `accentColor`.
+- La **lingua** dell'interfaccia si imposta col campo `lang`: `"it"` o `"en"` (tutta la UI, badge "sei il N° fan" e testo di condivisione inclusi, cambia di conseguenza). I tuoi testi — bio, descrizioni dei brani — restano come li scrivi tu.
 
 ## 📲 Installa come app (PWA)
 

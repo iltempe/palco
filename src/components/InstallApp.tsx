@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { t } from "../lib/i18n";
 
 // Evento non standard supportato da Chrome/Edge/Android.
 type InstallPromptEvent = Event & {
@@ -59,7 +60,7 @@ export default function InstallApp() {
   if (deferred) {
     return (
       <button onClick={install} className="chip">
-        <span aria-hidden>📲</span> Installa l'app
+        <span aria-hidden>📲</span> {t.install}
       </button>
     );
   }
@@ -69,12 +70,13 @@ export default function InstallApp() {
     return (
       <div className="relative inline-block">
         <button onClick={() => setIosHelp((v) => !v)} className="chip" aria-expanded={iosHelp}>
-          <span aria-hidden>📲</span> Installa l'app
+          <span aria-hidden>📲</span> {t.install}
         </button>
         {iosHelp && (
           <div className="absolute left-0 top-full z-20 mt-2 w-64 rounded-xl border border-elev bg-surface p-3 text-left text-xs leading-relaxed text-dim shadow-xl">
-            Tocca <b className="text-[#f3f3f6]">Condividi</b> <span aria-hidden>􀈂</span> nella barra di
-            Safari, poi <b className="text-[#f3f3f6]">Aggiungi alla schermata Home</b>.
+            {t.ios.before} <b className="text-[#f3f3f6]">{t.ios.share}</b>{" "}
+            <span aria-hidden>􀈂</span> {t.ios.middle}{" "}
+            <b className="text-[#f3f3f6]">{t.ios.addHome}</b>.
           </div>
         )}
       </div>

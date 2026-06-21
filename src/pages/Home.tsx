@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { config } from "../lib/config";
 import { fetchCounts } from "../lib/analytics";
+import { t } from "../lib/i18n";
 import type { Counts } from "../lib/types";
 import Hero from "../components/Hero";
 import TrackRow from "../components/TrackRow";
@@ -20,12 +21,10 @@ export default function Home() {
 
       <section className="pb-32">
         <h2 className="mb-3 px-3 text-sm font-bold uppercase tracking-wider text-dim">
-          {tracks.length > 1 ? "Brani" : "Brano"}
+          {t.tracksHeading(tracks.length)}
         </h2>
         {tracks.length === 0 ? (
-          <p className="rounded-2xl bg-surface p-8 text-center text-dim">
-            Aggiungi i tuoi brani in <code className="text-accent-soft">site.config.ts</code>.
-          </p>
+          <p className="rounded-2xl bg-surface p-8 text-center text-dim">{t.emptyTracks}</p>
         ) : (
           <div className="space-y-1">
             {tracks.map((t) => (

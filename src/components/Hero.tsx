@@ -1,5 +1,6 @@
 import type { Artist, SocialLinks } from "../lib/types";
 import { assetUrl } from "../lib/utils";
+import { t } from "../lib/i18n";
 import InstallApp from "./InstallApp";
 
 const LINK_LABELS: Record<keyof SocialLinks, string> = {
@@ -9,7 +10,7 @@ const LINK_LABELS: Record<keyof SocialLinks, string> = {
   appleMusic: "Apple Music",
   bandcamp: "Bandcamp",
   soundcloud: "SoundCloud",
-  website: "Sito",
+  website: t.linkWebsite,
   email: "Email",
 };
 

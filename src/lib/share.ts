@@ -1,6 +1,7 @@
 import type { Track } from "./types";
 import { config } from "./config";
 import { assetUrl } from "./utils";
+import { t } from "./i18n";
 
 function loadImage(src: string): Promise<HTMLImageElement> {
   return new Promise((resolve, reject) => {
@@ -64,16 +65,11 @@ export async function buildShareImage(
   ctx.textAlign = "center";
   ctx.fillStyle = "#ffffff";
 
-  if (rank != null) {
-    ctx.font = "800 96px Inter, system-ui, sans-serif";
-    ctx.fillText(`Sono il ${rank}° fan`, S / 2, 660);
-  } else {
-    ctx.font = "800 84px Inter, system-ui, sans-serif";
-    ctx.fillText("Tra i primi fan", S / 2, 660);
-  }
+  ctx.font = rank != null ? "800 96px Inter, system-ui, sans-serif" : "800 84px Inter, system-ui, sans-serif";
+  ctx.fillText(t.img.headline(rank), S / 2, 660);
 
   ctx.font = "600 56px Inter, system-ui, sans-serif";
-  ctx.fillText(`di ${config.artist.name}`, S / 2, 740);
+  ctx.fillText(t.img.of(config.artist.name), S / 2, 740);
 
   ctx.font = "500 34px Inter, system-ui, sans-serif";
   ctx.fillStyle = "rgba(255,255,255,0.7)";
@@ -81,7 +77,7 @@ export async function buildShareImage(
 
   ctx.font = "700 30px Inter, system-ui, sans-serif";
   ctx.fillStyle = "rgba(255,255,255,0.55)";
-  ctx.fillText("ascolta su Palco 🎤", S / 2, 980);
+  ctx.fillText(t.img.listen, S / 2, 980);
 
   const dataUrl = canvas.toDataURL("image/png");
   const file = await new Promise<File | null>((resolve) =>
@@ -100,10 +96,7 @@ export async function shareFan(
   file: File | null
 ): Promise<"shared" | "copied" | "error"> {
   const url = window.location.href;
-  const text =
-    rank != null
-      ? `Sono il ${rank}° fan di ${config.artist.name}! 🎤 Ascolta “${track.title}”`
-      : `Ascolta ${config.artist.name}: “${track.title}” 🎤`;
+  const text = t.shareText(rank, config.artist.name, track.title);
 
   const nav = navigator as Navigator & {
     canShare?: (data: ShareData) => boolean;

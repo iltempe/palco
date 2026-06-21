@@ -2,13 +2,14 @@ import type { Track, Counts } from "../lib/types";
 import { usePlayer } from "../context/PlayerContext";
 import { analyticsEnabled } from "../lib/analytics";
 import { assetUrl, compact } from "../lib/utils";
+import { lang, t } from "../lib/i18n";
 import LikeButton from "./LikeButton";
 
 function formatDate(d?: string): string {
   if (!d) return "";
   const date = new Date(d + "T00:00:00");
   if (isNaN(date.getTime())) return "";
-  return date.toLocaleDateString("it", { month: "short", year: "numeric" });
+  return date.toLocaleDateString(lang, { month: "short", year: "numeric" });
 }
 
 export default function TrackRow({ track, counts }: { track: Track; counts?: Counts }) {
@@ -24,7 +25,7 @@ export default function TrackRow({ track, counts }: { track: Track; counts?: Cou
     >
       <button
         onClick={() => (active ? toggle() : play(track))}
-        aria-label={showPause ? "Pausa" : "Riproduci"}
+        aria-label={showPause ? t.pause : t.play}
         className="relative h-14 w-14 shrink-0 overflow-hidden rounded-xl bg-elev"
       >
         {track.cover ? (

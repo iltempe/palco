@@ -1,6 +1,7 @@
 import { usePlayer } from "../context/PlayerContext";
 import { config } from "../lib/config";
 import { assetUrl, formatTime } from "../lib/utils";
+import { t } from "../lib/i18n";
 
 export default function PlayerBar() {
   const { current, isPlaying, toggle, seek, next, prev, progress, currentTime, duration } =
@@ -41,7 +42,7 @@ export default function PlayerBar() {
         </div>
 
         {many && (
-          <button onClick={prev} aria-label="Precedente" className="hidden p-2 text-dim hover:text-white sm:block">
+          <button onClick={prev} aria-label={t.prev} className="hidden p-2 text-dim hover:text-white sm:block">
             <svg viewBox="0 0 24 24" width="22" height="22" fill="currentColor">
               <path d="M6 6h2v12H6zm3.5 6l8.5 6V6z" />
             </svg>
@@ -50,7 +51,7 @@ export default function PlayerBar() {
         <button
           onClick={toggle}
           className="grid h-11 w-11 shrink-0 place-items-center rounded-full bg-accent text-white transition active:scale-95"
-          aria-label={isPlaying ? "Pausa" : "Riproduci"}
+          aria-label={isPlaying ? t.pause : t.play}
         >
           {isPlaying ? (
             <svg viewBox="0 0 24 24" width="22" height="22" fill="currentColor">
@@ -64,7 +65,7 @@ export default function PlayerBar() {
           )}
         </button>
         {many && (
-          <button onClick={next} aria-label="Successivo" className="hidden p-2 text-dim hover:text-white sm:block">
+          <button onClick={next} aria-label={t.next} className="hidden p-2 text-dim hover:text-white sm:block">
             <svg viewBox="0 0 24 24" width="22" height="22" fill="currentColor">
               <path d="M16 6h2v12h-2zM6 6l8.5 6L6 18z" />
             </svg>
